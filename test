@@ -1,1 +1,4 @@
-gej
+DC :
+ldapsearch -H ldap://DC1DC02.lookersgrp.local -x -D "kalismith2@lookersgrp.local" -w 'Tankerheartyregency4!' -b "DC=lookersgrp,DC=local"  "(&(objectCategory=computer)(userAccountControl:1.2.840.113556.1.4.803:=8192))" Name
+trust :
+ ldapsearch -H ldap://DC1DC02.lookersgrp.local -x -D "kalismith2@lookersgrp.local" -w 'Tankerheartyregency4!' -b "DC=lookersgrp,DC=local" "(objectClass=trustedDomain)"
