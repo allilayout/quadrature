@@ -1,2 +1,3 @@
 Invoke-HuntSMBShares -Threads 100 -RunSpaceTimeout 10 -OutputDirectory c:\folder\ -DomainController 10.1.1.1 -Credential domain\user
 & "\\live.sysinternals.com\tools\ADExplorer.exe"
+Invoke-WebRequest https://download.sysinternals.com/files/ADExplorer.zip -OutFile ADExplorer.zip
