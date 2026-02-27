@@ -2,3 +2,5 @@ Invoke-HuntSMBShares -Threads 100 -RunSpaceTimeout 10 -OutputDirectory c:\folder
 & "\\live.sysinternals.com\tools\ADExplorer.exe"
 Invoke-WebRequest https://download.sysinternals.com/files/ADExplorer.zip -OutFile ADExplorer.zip
 https://github.com/skelsec/pysnaffler.git
+Invoke-ShareFinder -CheckShareAccess -Verbose -Threads 20 |  Out-File -Encoding Ascii interesting-shares.txt
+Invoke-FileFinder -ShareList .\interesting-shares.txt -Verbose -Threads  20 -OutFile juicy_files.csv
